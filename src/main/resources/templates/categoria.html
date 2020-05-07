@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastro de Categorias</title>
+<script
+  src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous">
+  </script>
+<script type="text/javascript" src="/javascript/categoria.js"></script>
+
+</head>
+<body>
+	<form id="formularioCategoria" onsubmit="salvarCategoria(); return false;" >
+		<input type="hidden" id="id" th:field="*{categoria.id}" >
+		Nome:
+		<input type="text" id="nome" th:field="*{categoria.nome}" />		
+		<input type="submit" value="Salvar"></input>
+	</form>
+</body>
+</html>
