@@ -13,31 +13,13 @@
   
 </head>
 <body>
-<h1>Tabela com todas as categorias cadastradas no banco de dados</h1>
+<h1>Essa é a home do nosso projeto.</h1>
 
-<a href="/categorias/formulario">Nova Categoria</a>
-
-<table border="1">
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Categoria</th>
-			<th></th>				
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="categoria: ${listaCategorias}">
-			<td th:text="${categoria.id}">99</td>
-			<td th:text="${categoria.nome}">Nome da categoria</td>
-			<td>			
-				<a th:href="@{|/categorias/formulario/${categoria.id}|}">Alterar</a> |
-				<a class="linkExcluir" th:data-id="${categoria.id}" href="#">Excluir</a>
-			</td>			
-		</tr>
-	</tbody>
-</table>
-
-
+Links:
+<ul>
+	<li><a href="/login">Login</a></li>
+	<li><a href="/categorias">Categorias</a></li>
+</ul>
 
 </body>
 </html>

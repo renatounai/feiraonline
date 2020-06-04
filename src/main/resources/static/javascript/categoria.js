@@ -6,7 +6,7 @@ $( document ).ready(function() {
 	  var tr = $(this).parent().parent(); 
 	  
 	  $.ajax({
-		    url: '/categorias/' + id,
+		    url: '/api/categorias/' + id,
 		    type: 'DELETE',
 		    success: function(result) {
 		    	tr.remove(); 
@@ -22,14 +22,13 @@ function salvarCategoria() {
 	};
 	
 	$.ajax({
-	    url: '/categorias',
+	    url: '/api/categorias',
 	    type: 'POST',
 	    data: JSON.stringify(categoria),
 	    dataType : 'json',
 	    contentType: 'application/json',
-	    complete: function(result) {
-	    	console.log('cadastrado com sucesso!');
-	    	window.location = '/home';
+	    complete: function(result) {	    	
+	    	window.location = '/categorias';
 	    }
 	});
 }

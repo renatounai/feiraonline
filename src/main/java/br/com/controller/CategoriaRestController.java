@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.exception.NaoEncontradoException;
 import br.com.modelo.Categoria;
 import br.com.repositorio.CategoriaRepository;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/api/categorias")
 public class CategoriaRestController {
 	
 	@Autowired
@@ -27,13 +28,13 @@ public class CategoriaRestController {
 	 * @return
 	 */
 	@GetMapping
-	public List<Categoria> selecionarTodasAsCategorias() {		
+	public List<Categoria> selecionarTodasAsCategorias() {
 		return categoriaRepository.findAll();
 	}
 	
 	@GetMapping(value = "/{id}")
 	public Categoria selecionarCategoriaPeloId(@PathVariable int id) {
-		return categoriaRepository.findById(id).get();
+		return categoriaRepository.findById(id).orElseThrow(NaoEncontradoException::new);
 	}
 	
 	@PostMapping
@@ -45,6 +46,14 @@ public class CategoriaRestController {
 	public void deletarCategoria(@PathVariable int id) {
 		Categoria categoria = categoriaRepository.findById(id).get();
 		categoriaRepository.delete(categoria);
+	}
+	
+	@PostMapping(value = "/testa-optional")
+	public Categoria criaCategoriaSeNaoExiste(@RequestBody Categoria categoria) {
+		return categoriaRepository.findById(categoria.getId()).orElseGet(() -> {			
+			categoriaRepository.save(categoria);
+			return categoria;
+		});
 	}
 	
 }
