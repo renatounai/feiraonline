@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pagina principal do meu site</title>
+<script
+  src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous">
+  </script>
+  
+  <script type="text/javascript" src="/javascript/categoria.js"></script>
+  
+</head>
+<body>
+<h1>Tabela com todas as categorias cadastradas no banco de dados</h1>
+
+<a href="/categorias/formulario">Nova Categoria</a>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Categoria</th>
+			<th></th>				
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="categoria: ${listaCategorias}">
+			<td th:text="${categoria.id}">99</td>
+			<td th:text="${categoria.nome}">Nome da categoria</td>
+			<td>			
+				<a th:href="@{|/categorias/formulario/${categoria.id}|}">Alterar</a> |
+				<a class="linkExcluir" th:data-id="${categoria.id}" href="#">Excluir</a>
+			</td>			
+		</tr>
+	</tbody>
+</table>
+
+
+
+</body>
+</html>
